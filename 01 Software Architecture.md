@@ -41,17 +41,17 @@
 10. **SonarQube**: Code Quality Check Tool
 
 ### AWS Services
-1. EC2
-2. S3
-3. VPC
-4. IAM
-5. RDS
-6. CI/CD
-7. SNS
-8. SQS
-9. EBS
-10. Elastic Load Balancer
-11. Auto Scaling Group
+1. **EC2**: Amazon Elastic Compute Cloud
+2. **S3**: Amazon Simple Storage Service
+3. **VPC**: Virtual Private Cloud
+4. **IAM**: Identity and Access Management
+5. **RDS**: Amazon Relational Database Service
+6. **CI/CD**: Continuous Integration/Continuous Deployment
+7. **SNS**: Amazon Simple Notification Service
+8. **SQS**: Amazon Simple Queue Service
+9. **EBS**: Amazon Elastic Block Store
+10. **ELB**: Elastic Load Balancer
+11. **ASG**: Auto Scaling Group
 
 ### Software Architecture
 1. **Presentation Layer**
