@@ -51,6 +51,8 @@
         nameserver 1.1.1.1
         reboot
         ```
+
+
 ## 3. Security Basics
 
 ### Symmetric Encryption
@@ -69,6 +71,7 @@ To store a public key, you can append it to the `authorized_keys` file on the se
 ```bash
 cat ~/.ssh/authorized_keys
 ```
+
 
 ## 4. Applications Basics
 
@@ -160,7 +163,8 @@ yum install -y python36
 - **Uninstall:** `pip uninstall flask`
 - **Upgrade:** `pip install flask --upgrade`
 
-## 4. Web Server
+
+## 5. Web Server
 
 ### Apache Web Server
 
@@ -169,7 +173,233 @@ yum install -y python36
 - **Port**: 80
 
 ```sh
-yum install httpd
-service httpd start
-service httpd status
+sudo yum update -y
+```
+```sh
+sudo yum install httpd -y
+```
+```sh
+sudo systemctl start httpd
+```
+```sh
+sudo systemctl enable httpd
+```
+```sh
+sudo systemctl status httpd
+```
+```sh
+sudo vim /var/www/html/index.html
+```
+```sh
+sudo systemctl restart httpd
+```
 
+### Logs
+  **Access Log:** `cat /var/log/httpd/access_log`
+ 
+  **Error Log:** `cat /var/log/httpd/error_log`
+
+  **Config File:** `/etc/httpd/conf/httpd.conf`
+
+
+### Virtual Hosts
+
+To host multiple websites on a single server, add VirtualHost entries.
+
+#### Example:
+
+flipkart.conf
+
+**Path:** `/etc/httpd/conf/flipkart.conf`
+
+```sh
+<VirtualHost *:80>
+    ServerAdmin ec2-user@localhost
+    DocumentRoot /var/www/flipkart
+    ServerName flipkart.com
+    ServerAlias www.flipkart.com
+
+    <Directory /var/www/flipkart>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+#### Example:
+
+amazon.conf
+
+**Path:** `/etc/httpd/conf/amazon.conf`
+
+```sh
+<VirtualHost *:80>
+    ServerAdmin ec2-user@localhost
+    DocumentRoot /var/www/amazon
+    ServerName amazon.com
+    ServerAlias www.amazon.com
+
+    <Directory /var/www/amazon>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+**Add the following lines to** `/etc/httpd/conf/httpd.conf:`
+
+```sh
+Include conf/flipkart.conf
+Include conf/amazon.conf
+```
+
+### Apache Tomcat
+ - **Port:** 8080
+
+### Nginx
+Hosting Multiple Websites on a Single Server using nginx
+
+#### Prerequisites
+
+- A server running a Linux distribution (e.g., Ubuntu, Linux)
+- Basic knowledge of command-line operations
+- nginx installed on your server
+
+#### Installation
+
+1. **Install nginx** (if not already installed):
+    ```bash
+    sudo yum update -y
+    ```
+    ```bash
+    sudo yum install nginx -y
+    
+    or
+    
+    sudo amazon-linux-extras install nginx1
+    ```
+    ```bash
+    sudo systemctl start nginx
+    ```
+    ```bash
+    sudo systemctl enable nginx
+    ```
+    ```bash
+    sudo systemctl status nginx
+    ```
+    ```bash
+    sudo systemctl restart nginx
+    ```
+
+2. **Create directories for your websites** (assuming you have `example1.com` and `example2.com`):
+    ```bash
+    sudo mkdir -p /var/www/example1.com/html
+    sudo mkdir -p /var/www/example2.com/html
+    ```
+
+3. **Set permissions for the directories**:
+    ```bash
+    sudo chown -R $USER:$USER /var/www/example1.com/html
+    sudo chown -R $USER:$USER /var/www/example2.com/html
+    sudo chmod -R 755 /var/www
+    ```
+
+4. **Create sample index.html files for your websites**:
+    ```bash
+    echo "<html><head><title>Welcome to Example1</title></head><body><h1>Success! The example1.com server block is working!</h1></body></html>" > /var/www/example1.com/html/index.html
+
+    echo "<html><head><title>Welcome to Example2</title></head><body><h1>Success! The example2.com server block is working!</h1></body></html>" > /var/www/example2.com/html/index.html
+    ```
+
+5. **Create server block configuration files for each website**:
+    - For `example1.com`:
+      ```bash
+      sudo nano /etc/nginx/sites-available/example1.com
+      ```
+      Add the following content:
+      ```nginx
+      server {
+          listen 80;
+          server_name example1.com www.example1.com;
+
+          root /var/www/example1.com/html;
+          index index.html;
+
+          location / {
+              try_files $uri $uri/ =404;
+          }
+      }
+      ```
+    - For `example2.com`:
+      ```bash
+      sudo nano /etc/nginx/sites-available/example2.com
+      ```
+      Add the following content:
+      ```nginx
+      server {
+          listen 80;
+          server_name example2.com www.example2.com;
+
+          root /var/www/example2.com/html;
+          index index.html;
+
+          location / {
+              try_files $uri $uri/ =404;
+          }
+      }
+      ```
+
+6. **Enable the server blocks by creating symbolic links**:
+    ```bash
+    sudo ln -s /etc/nginx/sites-available/example1.com /etc/nginx/sites-enabled/
+    sudo ln -s /etc/nginx/sites-available/example2.com /etc/nginx/sites-enabled/
+    ```
+
+7. **Test the nginx configuration for syntax errors**:
+    ```bash
+    sudo nginx -t
+    ```
+
+8. **Reload nginx to apply the changes**:
+    ```bash
+    sudo systemctl reload nginx
+    ```
+
+9. **Update your DNS settings** to point to your server's IP address for `example1.com` and `example2.com`.
+
+
+### Python Web Frameworks
+ - **Port:** 8000
+ - **Frameworks:** Flask, Django
+ - **Production Deployment:**
+   - **Gunicorn**
+   - **uWSGI**
+   - **Gevent**
+   - **Twisted Web**
+
+### NodeJS Web Framework
+ - **Port:** 3000
+ - **Framework:** ExpressJS
+ - **Production Deployment:** PM2
+ - `pm2 start app.js`
+ - `pm2 start app.js -i 4`
+
+
+## 6. Database
+
+**Types:**
+ - **SQL:** Structured Query Language, relational databases with tables.
+   
+   **Examples:** MySQL, PostgreSQL, Microsoft SQL Server
+        
+ - **NoSQL:** Non-relational databases, often document-based.
+   
+    **Examples:** MongoDB, Amazon DynamoDB
