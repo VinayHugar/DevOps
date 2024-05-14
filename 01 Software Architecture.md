@@ -67,15 +67,21 @@
    - **Technologies**: MySQL, PostgreSQL, MongoDB, Oracle, SQL Server.
 
 ### Architecture Types
-- **1-Tier Architecture**: Example: A desktop application like Microsoft Access, where the user interface, business logic, and database are all contained within the same program.
+- **1-Tier Architecture**:
+  - Example: A desktop application like Microsoft Access, where the user interface, business logic, and database are all contained within the same program.
   
-- **2-Tier Architecture**: Example: A client-server application where a desktop client interacts directly with a database server. For example, a desktop application using MySQL for data storage.
+- **2-Tier Architecture**:
+  - Example: A client-server application where a desktop client interacts directly with a database server. For example, a desktop application using MySQL for data storage.
   
-- **3-Tier Architecture**: Example: A web application with a front-end built with Angular (Presentation Layer), a back-end server using Node.js (Application Layer), and a PostgreSQL database (Database Layer).
+- **3-Tier Architecture**:
+  - Example: A web application with a front-end built with Angular (Presentation Layer), a back-end server using Node.js (Application Layer), and a PostgreSQL database (Database Layer).
   
-- **N-Tier Architecture (More Than One Server Application)**: Example: A complex enterprise application with multiple layers including Client Layer, Presentation Layer, Application Layer, Business Logic Layer, Data Access Layer, Database Layer, Caching Layer, and Load Balancing Layer.
+- **N-Tier Architecture (More Than One Server Application)**:
+  - Example: A complex enterprise application with multiple layers including Client Layer, Presentation Layer, Application Layer, Business Logic Layer, Data Access Layer, Database Layer, Caching Layer, and Load Balancing Layer.
 
 ### Architectural Styles
-1. **Monolithic Architecture**: Example: An e-commerce website where the user interface, order processing, inventory management, and payment processing are all built into a single Java application deployed on a single server.
+1. **Monolithic Architecture**:
+   - Example: An e-commerce website where the user interface, order processing, inventory management, and payment processing are all built into a single Java application deployed on a single server.
 
-2. **Microservices Architecture**: Example: Modern online travel booking system with separate user, booking, payment, and notification services.
+2. **Microservices Architecture**:
+   - Example: Modern online travel booking system with separate user, booking, payment, and notification services.
