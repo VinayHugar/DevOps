@@ -26,7 +26,7 @@
 
 ### DevOps (2008)
 - Plan > Code > Build > Test > Release > Deploy > Operate > Monitor
-<img src="https://github.com/VinayHugar/DevOps/blob/master/assets/DevOps.png" width="600" height="200">
+<img src="https://github.com/VinayHugar/DevOps/blob/master/assets/DevOps.png" width="600" height="300">
 
 ### Tools & Services in DevOps
 1. **Git**: Source Code Management Tool
