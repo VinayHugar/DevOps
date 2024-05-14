@@ -164,9 +164,15 @@ yum install -y python36
 - **Upgrade:** `pip install flask --upgrade`
 
 
-## 5. Web Server
+## 5. Web Server & Frameworks
+ - Apache HTTP Server (Apache)
+ - Nginx
+ - Apache Tomcat
+ - Python Web Frameworks
+ - NodeJS Web Framework
 
-### Apache Web Server
+
+## Apache HTTP Server (Apache)
 
 #### Installation and Setup
 
@@ -261,10 +267,10 @@ Include conf/flipkart.conf
 Include conf/amazon.conf
 ```
 
-### Apache Tomcat
+## Apache Tomcat
  - **Port:** 8080
 
-### Nginx
+## Nginx
 Hosting Multiple Websites on a Single Server using nginx
 
 #### Prerequisites
@@ -376,7 +382,7 @@ Hosting Multiple Websites on a Single Server using nginx
 9. **Update your DNS settings** to point to your server's IP address for `example1.com` and `example2.com`.
 
 
-### Python Web Frameworks
+## Python Web Frameworks
  - **Port:** 8000
  - **Frameworks:** Flask, Django
  - **Production Deployment:**
@@ -385,7 +391,7 @@ Hosting Multiple Websites on a Single Server using nginx
    - **Gevent**
    - **Twisted Web**
 
-### NodeJS Web Framework
+## NodeJS Web Framework
  - **Port:** 3000
  - **Framework:** ExpressJS
  - **Production Deployment:** PM2
