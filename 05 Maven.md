@@ -263,7 +263,7 @@ When a phase is run, all the goals related to that phase and it’s Plugins are 
 
 ## MAVEN DIRECTORY STRUCTURE :
 
-![image](https://user-images.githubusercontent.com/120022254/233935885-783a6d74-5774-4920-880e-0522ac8a9376.png)
+![image](https://github.com/VinayHugar/DevOps/blob/master/assets/Maven_Archit.png)
 
 1. Generate Source Code :
 
